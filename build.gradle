@@ -11,7 +11,6 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -32,9 +31,24 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+//def SDK_BASENAME = "joey-net";
+//def SDK_VERSION = "-v1.0";
+//def sdkDestinationPath = "build/outputs/jar/";
+//def zipFile = file('build/intermediates/bundles/release/classes.jar')
+//
+//task deleteBuild(type: Delete) {
+//    delete sdkDestinationPath + SDK_BASENAME + SDK_VERSION + ".jar"
+//}
+//
+//task makeJar(type: Jar) {
+//    from zipTree(zipFile)
+//    from fileTree(dir: 'src/main', includes: ['assets/**']) // 打包assets目录下的所有文件
+//    baseName = SDK_BASENAME + SDK_VERSION
+//    destinationDir = file(sdkDestinationPath)
+//}
 task makeJar(type: Copy) {
     //删除存在的
-    delete 'build/libs/mysdk.jar'
+    delete 'build/libs/joey-net-v1.0.jar'
     //设置拷贝的文件
     from('build/intermediates/bundles/release/')
     //打进jar包后的文件目录
@@ -48,3 +62,5 @@ task makeJar(type: Copy) {
 }
 
 makeJar.dependsOn(build)
+
+//makeJar.dependsOn(deleteBuild, build)
