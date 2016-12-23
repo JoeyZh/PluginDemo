@@ -61,24 +61,21 @@
 #忽略警告
 -ignorewarnings
 #保证是独立的jar,没有任何项目引用,如果不写就会认为我们所有的代码是无用的,从而把所有的代码压缩掉,导出一个空的jar
-#-dontshrink
+-dontshrink
 #保护泛型
 -keepattributes Signature
 
--keep class com.joey.net.**{*;}
+-keep class com.joey.net.protocol.**{*;}
+-keep class com.joey.utils.NetWorkUtil{
+    public static void init(android.content.Context);
+    public static java.lang.String getCurrentNetworkType();
+    public static boolean IsNetWorkEnable();
+}
+-keep class com.joey.hybrid.HybridWebClient
 
-#-libraryjars libs/fastjson-1.2.7.jar
-#-libraryjars libs/volley.jar
-#-libraryjars libs/xUtils-2.6.14.jar
+-keep class com.android.volley.**{*;}
+-keep class com.android.volley.toolbox.**{*;}
 
-#-dontwarn com.alibaba.fastjson.**
-#-dontwarn com.android.volley.**
-#-dontwarn com.android.volley.toolbox.**
-#-dontwarn com.lidroid.xutils.**
-#-dontwarn com.lidroid.xutils.bitmap.**
-#-dontwarn com.lidroid.xutils.cache.**
-#-dontwarn com.lidroid.xutils.db.**
-#-dontwarn com.lidroid.xutils.exception.**
 
 
 

@@ -1,8 +1,7 @@
 package com.joey.net.protocol;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.android.volley.Response;
+import org.json.JSONObject;
 
 
 /**
@@ -25,8 +24,8 @@ public abstract class ResponseListener<T> implements Response.Listener<String> {
     private void convert(String s) {
 //        KLog.a(getClass().getName(), "convert obj = " + s);
         try {
-            JSONObject obj = JSON.parseObject(s);
-            int status = obj.getIntValue("status");
+            JSONObject obj = new JSONObject();
+            int status = obj.getInt("status");
             String msg = obj.getString("message");
             if (handler != null)
                 handler.onSuccess();
