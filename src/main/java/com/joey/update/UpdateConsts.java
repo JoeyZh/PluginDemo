@@ -12,4 +12,8 @@ public class UpdateConsts {
     public final static String UPDATE_APK_PATH = "/ibg100/update/apk";
     public static String downloadCode;
 
+    public final static int STATUS_FORCE_UPDATE = 1;
+    public final static int STATUS_NORMAL_UPDATE = 2;
+    public final static int STATUS_NO_UPDATE = 3;
+
 }

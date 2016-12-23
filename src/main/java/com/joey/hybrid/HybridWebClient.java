@@ -21,15 +21,19 @@ public class HybridWebClient extends WebViewClient {
             String packageName = activity.getPackageName();
             Class<?> goodsDetailCls = null;
             try {
-                goodsDetailCls = Class.forName(packageName+".user.goods.GoodsDetailActivity");
-            }catch (Exception e){
+                goodsDetailCls = Class.forName(packageName + ".user.goods.GoodsDetailActivity");
+            } catch (Exception e) {
                 return;
             }
-            Intent intent = new Intent(activity,goodsDetailCls);
+            Intent intent = new Intent(activity, goodsDetailCls);
             intent.putExtra("goods_id", s);
             activity.startActivity(intent);
         }
     };
+
+    public static String parseGoodsId(String url) {
+        return HybridParser.parseGoodsId(url);
+    }
 
     public HybridWebClient(Activity activity, ResponseHandler handler) {
         this.activity = activity;

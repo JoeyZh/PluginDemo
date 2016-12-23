@@ -50,9 +50,6 @@ public class UpdateManager {
     private ProgressBar update_progress;
     private TextView update_text;
     private Activity mContext;
-    public final static int STATUS_FORCE_UPDATE = 1;
-    public final static int STATUS_NORMAL_UPDATE = 2;
-    public final static int STATUS_NO_UPDATE = 3;
     public AlertDialog netDlg;
 
     private UpdateProgressListener progressListener = new UpdateProgressListener() {
@@ -144,12 +141,12 @@ public class UpdateManager {
                 checkBean = bean;
                 mDownloadUrl = checkBean.getUrl();
                 switch (status) {
-                    case STATUS_FORCE_UPDATE:
+                    case UpdateConsts.STATUS_FORCE_UPDATE:
                         forceUpdate = true;
                         noticeUpdate(true);
                         createUpdateDialog().show();
                         break;
-                    case STATUS_NORMAL_UPDATE:
+                    case UpdateConsts.STATUS_NORMAL_UPDATE:
                         forceUpdate = false;
                         noticeUpdate(true);
                         createUpdateDialog().show();
@@ -180,7 +177,7 @@ public class UpdateManager {
         mContext.sendBroadcast(intent);
     }
 
-    public void showNetWarnDialog() {
+    private void showNetWarnDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         long fileSize = checkBean.getSize();
         //接口中没有该参数，直接返回就好了
