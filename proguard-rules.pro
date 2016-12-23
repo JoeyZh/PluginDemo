@@ -71,7 +71,13 @@
     public static java.lang.String getCurrentNetworkType();
     public static boolean IsNetWorkEnable();
 }
+
+-keep class com.joey.utils.ResourcesUnusualUtil{
+    public static int *(java.lang.String);
+    public static java.lang.String *(java.lang.String);
+}
 -keep class com.joey.hybrid.HybridWebClient
+-keep class com.joey.update.**{*;}
 
 -keep class com.android.volley.**{*;}
 -keep class com.android.volley.toolbox.**{*;}
