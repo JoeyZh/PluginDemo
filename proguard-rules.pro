@@ -15,12 +15,20 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+##忽略警告
+-ignorewarnings
 -optimizationpasses 5
+##【混淆时不会产生形形色色的类名 】
 -dontusemixedcaseclassnames
+#【指定不去忽略非公共的库类。 】
 -dontskipnonpubliclibraryclasses
+#【不预校验】
 -dontpreverify
+#预校验
+#-dontoptimize
 -verbose
--optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+#优化
+#-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
@@ -58,8 +66,7 @@
 -keep class * implements com.joey.net.ResponseListener{
 
 }
-##忽略警告
-#-ignorewarnings
+
 ##保证是独立的jar,没有任何项目引用,如果不写就会认为我们所有的代码是无用的,从而把所有的代码压缩掉,导出一个空的jar
 #-dontshrink
 ##保护泛型
@@ -74,20 +81,19 @@
 }
 
 -keep class com.joey.utils.ResourcesUnusualUtil{
-    public static int *(java.lang.String);
-    public static java.lang.String *(java.lang.String);
-    public static void *(android.content.Context);
-    public static void *();
+   #【所有方法不进行混淆】
+  public protected <methods>;
 
 }
 -keep class com.joey.hybrid.HybridWebClient{
     public static java.lang.String *(java.lang.String);
 }
 -keep class * implements com.joey.update.UpdateProgressListener {
-    void onProgress(long, long);
-    void onStartProgress();
-    void onFinish();
-    void onError();
+#    void onProgress(long, long);
+#    void onStartProgress();
+#    void onFinish();
+#    void onError();
+    public protected <methods>;
 }
 -keep class com.joey.update.CheckBean{*;}
 -keep class com.joey.update.UpdateManager{
@@ -99,10 +105,11 @@
 -keep interface com.joey.update.UpdateCheckListener{*;}
 -keep interface com.joey.update.UpdateProgressListener{*;}
 -keep class * implements com.joey.update.UpdateCheckListener {
-    void onProgress(long, long);
-    void onStartProgress();
-    void onFinish();
-    void onError();
+#    void onProgress(long, long);
+#    void onStartProgress();
+#    void onFinish();
+#    void onError();
+    public protected <methods>;
 }
 
 -keep class * extends com.joey.update.UpdateProtocol {
