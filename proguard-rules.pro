@@ -115,7 +115,10 @@
 
 
 -keep class com.android.volley.**{*;}
+-keep interface com.android.volley.**{*;}
 -keep class com.android.volley.toolbox.**{*;}
+-keep interface com.android.volley.toolbox.**{*;}
+
 
 
 
