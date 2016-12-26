@@ -28,7 +28,11 @@
 #-dontoptimize
 -verbose
 #优化
-#-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+##保证是独立的jar,没有任何项目引用,如果不写就会认为我们所有的代码是无用的,从而把所有的代码压缩掉,导出一个空的jar
+#-dontshrink
+##保护泛型
+#-keepattributes Signature
 
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
@@ -63,15 +67,6 @@
   public static final android.os.Parcelable$Creator *;
 }
 
--keep class * implements com.joey.net.ResponseListener{
-
-}
-
-##保证是独立的jar,没有任何项目引用,如果不写就会认为我们所有的代码是无用的,从而把所有的代码压缩掉,导出一个空的jar
-#-dontshrink
-##保护泛型
-#-keepattributes Signature
-
 -keep class com.joey.net.protocol.**{*;}
 
 -keep class com.joey.utils.NetWorkUtil{
@@ -87,6 +82,7 @@
 }
 -keep class com.joey.hybrid.HybridWebClient{
     public static java.lang.String *(java.lang.String);
+    public <methods>;
 }
 -keep class * implements com.joey.update.UpdateProgressListener {
 #    void onProgress(long, long);
@@ -97,8 +93,13 @@
 }
 -keep class com.joey.update.CheckBean{*;}
 -keep class com.joey.update.UpdateManager{
-    public void **();
+    public <methods>;
+#     public <init>;
 }
+#-keepclasseswithmembers class com.joey.update.UpdateManager {
+#    public <init>(android.content.Context, com.joey.update.UpdateProtocol);
+#}
+
 -keep class com.joey.update.UpdateProtocol{*;}
 -keep class com.joey.update.UpdateConsts{*;}
 -keep class com.joey.update.NotificationUtils{*;}

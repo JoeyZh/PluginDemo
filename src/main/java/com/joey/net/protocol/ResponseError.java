@@ -8,6 +8,7 @@ public class ResponseError {
     private int status;
     private String message;
     public static final int ERROR_BY_PARSE = 1000;
+    public static final int ERROR_BY_NET = 1002;
 
     public ResponseError(int status, String message) {
         this.status = status;

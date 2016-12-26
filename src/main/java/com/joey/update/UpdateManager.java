@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.joey.net.protocol.NetUtils;
 import com.joey.update.CheckBean;
 import com.joey.update.UpdateCheckListener;
 import com.joey.update.UpdateConsts;
@@ -38,7 +37,6 @@ public class UpdateManager {
      * 检测更新的服务
      */
     private CheckBean checkBean;
-    private NetUtils mNetUtils;
     private AlertDialog updateDialog;
     private String mDownloadUrl;
     private int mVersionCode;
@@ -92,7 +90,6 @@ public class UpdateManager {
     public UpdateManager(Activity context, UpdateProtocol protocol) {
         mContext = context;
         this.protocol = protocol;
-        mNetUtils = NetUtils.getInstance(context);
     }
 
     public void startCheckout() {
@@ -134,8 +131,7 @@ public class UpdateManager {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        mNetUtils = NetUtils.getInstance(mContext);
-        protocol.checkVersionCode(mNetUtils, mVersionCode, new UpdateCheckListener() {
+        protocol.checkVersionCode(mContext,mVersionCode, new UpdateCheckListener() {
             @Override
             public void update(int status, CheckBean bean) {
                 checkBean = bean;
