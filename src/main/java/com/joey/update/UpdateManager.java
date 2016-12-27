@@ -131,7 +131,7 @@ public class UpdateManager {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        protocol.checkVersionCode(mContext,mVersionCode, new UpdateCheckListener() {
+        protocol.checkVersionCode(mContext, mVersionCode, new UpdateCheckListener() {
             @Override
             public void update(int status, CheckBean bean) {
                 checkBean = bean;
@@ -293,11 +293,12 @@ public class UpdateManager {
                 }
             }
         });
+        updateDialog.setCanceledOnTouchOutside(false);
         updateDialog.setCancelable(true);
         updateDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                updateDialog.dismiss();
+                release();
                 if (forceUpdate) {
                     mContext.finish();
                 }
