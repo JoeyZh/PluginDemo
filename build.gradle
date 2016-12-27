@@ -18,9 +18,10 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
+        }
     }
 }
+    //makeJar.dependsOn(deleteBuild, build)
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -48,7 +49,6 @@ dependencies {
 //    exclude{ it.name.startsWith('R$');}
 //}
 //makeJar.dependsOn(clearJar, build)
-
 task makeJar(type: Copy) {
     //删除存在的
     delete 'build/libs/joey-net-v1.0.jar'
@@ -67,4 +67,4 @@ task makeJar(type: Copy) {
 
 makeJar.dependsOn(build)
 
-//makeJar.dependsOn(deleteBuild, build)
+
