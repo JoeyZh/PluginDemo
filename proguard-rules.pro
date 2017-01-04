@@ -35,6 +35,7 @@
 #-keepattributes Signature
 
 -keep public class * extends android.app.Activity
+-keep public class * extends android.support.v4.app.Fragment
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
@@ -52,10 +53,15 @@
 
 -keepclasseswithmembers class * {
     public <init>(android.content.Context, android.util.AttributeSet, int);
+    public <init>(android.content.Context);
 }
 
 -keepclassmembers class * extends android.app.Activity {
    public void *(android.view.View);
+}
+
+-keepclassmembers class * extends android.support.v4.app.Fragment {
+    public protected <methods>;
 }
 
 -keepclassmembers enum * {
@@ -105,6 +111,7 @@
 -keep class com.joey.update.NotificationUtils{*;}
 -keep interface com.joey.update.UpdateCheckListener{*;}
 -keep interface com.joey.update.UpdateProgressListener{*;}
+-keep interface com.joey.hybrid.OnWebTitleListener{*;}
 -keep class * implements com.joey.update.UpdateCheckListener {
 #    void onProgress(long, long);
 #    void onStartProgress();
