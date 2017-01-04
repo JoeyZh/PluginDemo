@@ -17,6 +17,7 @@ public class HybridViewFragment extends Fragment {
     private String good_desc;
     private HybridWebView we;
     private HybridWebClient client;
+    private OnWebTitleListener titleListener;
 
     public static HybridViewFragment newInstance(String url, boolean hasFlag) {
         HybridViewFragment fragment = new HybridViewFragment();
@@ -43,13 +44,14 @@ public class HybridViewFragment extends Fragment {
         we.setLayoutParams(params);
         we.setWebViewClient(client);
         we.loadUrl(good_desc);
+        we.setOnTitleListener(titleListener);
         we.getSettings().setJavaScriptEnabled(true);
         we.getSettings().setDomStorageEnabled(true);
         return we;
     }
 
     public void setOnTitleListener(OnWebTitleListener listener) {
-        we.setOnTitleListener(listener);
+        titleListener = listener;
     }
 
     public void reload() {
