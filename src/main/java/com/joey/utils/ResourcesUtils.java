@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
  * 加载R文件里面的内容<br/>
  * 例:通过字符串"str_ok",获取strings.xml中相应的内容.
  */
-public class ResourcesUnusualUtil {
+public class ResourcesUtils {
 
     // R文件的对象
     private static Resources resources;
@@ -31,6 +31,10 @@ public class ResourcesUnusualUtil {
         }
     }
 
+    /**
+     * 获取R的class
+     * @return
+     */
     private static Class<?> getResCls(){
         try {
             Class<?> cls = Class.forName(packageName+".R");

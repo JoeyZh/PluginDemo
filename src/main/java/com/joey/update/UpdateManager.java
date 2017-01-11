@@ -15,13 +15,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.joey.update.CheckBean;
-import com.joey.update.UpdateCheckListener;
-import com.joey.update.UpdateConsts;
-import com.joey.update.UpdateProgressListener;
-import com.joey.update.UpdateProtocol;
 import com.joey.utils.NetWorkUtil;
-import com.joey.utils.ResourcesUnusualUtil;
+import com.joey.utils.ResourcesUtils;
 
 import java.io.File;
 
@@ -250,16 +245,16 @@ public class UpdateManager {
             return updateDialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         updateDialog = builder.create();
-        ResourcesUnusualUtil.register(mContext);
+        ResourcesUtils.register(mContext);
         View view = View.inflate(mContext,
-                ResourcesUnusualUtil.getLayoutId("dlg_update_apk"),
+                ResourcesUtils.getLayoutId("dlg_update_apk"),
                 null);
-        TextView tvContent = (TextView) view.findViewById(ResourcesUnusualUtil.getId("txt_update_content"));
+        TextView tvContent = (TextView) view.findViewById(ResourcesUtils.getId("txt_update_content"));
         String content = checkBean.getContent();
         if (content != null) {
             tvContent.setText(content);
         }
-        Button btn_input_pwd_cancel = (Button) view.findViewById(ResourcesUnusualUtil.getId("btn_input_pwd_cancel"));
+        Button btn_input_pwd_cancel = (Button) view.findViewById(ResourcesUtils.getId("btn_input_pwd_cancel"));
         if (forceUpdate) {
             btn_input_pwd_cancel.setVisibility(View.GONE);
             btn_input_pwd_cancel.setEnabled(false);
@@ -273,7 +268,7 @@ public class UpdateManager {
                 updateDialog.dismiss();
             }
         });
-        Button btn_input_pwd_ok = (Button) view.findViewById(ResourcesUnusualUtil.getId("btn_input_pwd_ok"));
+        Button btn_input_pwd_ok = (Button) view.findViewById(ResourcesUtils.getId("btn_input_pwd_ok"));
         btn_input_pwd_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -323,9 +318,9 @@ public class UpdateManager {
             }
         });
         progressDlg.setCanceledOnTouchOutside(false);
-        View view = LayoutInflater.from(mContext).inflate(ResourcesUnusualUtil.getLayoutId("create_progress_dialog"), null);
-        update_progress = (ProgressBar) view.findViewById(ResourcesUnusualUtil.getId("update_progress"));
-        update_text = (TextView) view.findViewById(ResourcesUnusualUtil.getId("update_text"));
+        View view = LayoutInflater.from(mContext).inflate(ResourcesUtils.getLayoutId("create_progress_dialog"), null);
+        update_progress = (ProgressBar) view.findViewById(ResourcesUtils.getId("update_progress"));
+        update_text = (TextView) view.findViewById(ResourcesUtils.getId("update_text"));
         progressDlg.setView(view);
         return progressDlg;
     }

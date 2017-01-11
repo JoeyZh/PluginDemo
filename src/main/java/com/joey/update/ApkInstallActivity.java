@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 //import com.ibg100.shop.Utils.KLog;
 //import com.ibg100.shop.Utils.ShardPreferenceUtils;
-import com.joey.utils.ResourcesUnusualUtil;
+import com.joey.utils.ResourcesUtils;
 
 import java.io.File;
 
@@ -36,7 +36,7 @@ public class ApkInstallActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new FrameLayout(ApkInstallActivity.this));
-        ResourcesUnusualUtil.register(this);
+        ResourcesUtils.register(this);
         initData();
     }
 
@@ -113,12 +113,12 @@ public class ApkInstallActivity extends FragmentActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         dlgInstall = builder.create();
         View view = View.inflate(mContext,
-                ResourcesUnusualUtil.getLayoutId("dlg_update_apk"),
+                ResourcesUtils.getLayoutId("dlg_update_apk"),
                 null);
-        TextView tvContent = (TextView) view.findViewById(ResourcesUnusualUtil.getId("txt_update_content"));
+        TextView tvContent = (TextView) view.findViewById(ResourcesUtils.getId("txt_update_content"));
         tvContent.setText("安装包已经下载完毕，请您安装");
 
-        Button btn_input_pwd_cancel = (Button) view.findViewById(ResourcesUnusualUtil.getId("btn_input_pwd_cancel"));
+        Button btn_input_pwd_cancel = (Button) view.findViewById(ResourcesUtils.getId("btn_input_pwd_cancel"));
         btn_input_pwd_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,7 +127,7 @@ public class ApkInstallActivity extends FragmentActivity {
 //                notificationUtils.cancleNotifaction();
             }
         });
-        Button btn_input_pwd_ok = (Button) view.findViewById(ResourcesUnusualUtil.getId("btn_input_pwd_ok"));
+        Button btn_input_pwd_ok = (Button) view.findViewById(ResourcesUtils.getId("btn_input_pwd_ok"));
         btn_input_pwd_cancel.setText(android.R.string.cancel);
         btn_input_pwd_ok.setText("安装");
         btn_input_pwd_ok.setOnClickListener(new View.OnClickListener() {

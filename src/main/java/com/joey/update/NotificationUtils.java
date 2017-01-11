@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
 
-import com.joey.utils.ResourcesUnusualUtil;
+import com.joey.utils.ResourcesUtils;
 
 import java.io.File;
 
@@ -24,7 +24,7 @@ public class NotificationUtils {
     public NotificationUtils(Context context) {
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         this.context = context;
-        ResourcesUnusualUtil.register(context);
+        ResourcesUtils.register(context);
     }
 
     Notification notification;
@@ -47,7 +47,7 @@ public class NotificationUtils {
         notification.flags = Notification.FLAG_NO_CLEAR;
 
         // 创建 远程试图
-        remoteViews = new RemoteViews(context.getPackageName(),ResourcesUnusualUtil.getLayoutId("item_notifaction"));
+        remoteViews = new RemoteViews(context.getPackageName(), ResourcesUtils.getLayoutId("item_notifaction"));
         notification.contentView = remoteViews;
         //   发出通知
         mNotificationManager.notify(1, notification);
@@ -66,8 +66,8 @@ public class NotificationUtils {
      */
     public void upDateProgress(int progress, int max) {
         if (notification != null) {
-            notification.contentView.setProgressBar(ResourcesUnusualUtil.getId("pb_progress"), max, progress, false);
-            notification.contentView.setTextViewText(ResourcesUnusualUtil.getId("tv_progress"),  progress*100 / max + "%");
+            notification.contentView.setProgressBar(ResourcesUtils.getId("pb_progress"), max, progress, false);
+            notification.contentView.setTextViewText(ResourcesUtils.getId("tv_progress"),  progress*100 / max + "%");
             mNotificationManager.notify(1, notification);
         }
     }
@@ -83,7 +83,7 @@ public class NotificationUtils {
         intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         notification.contentIntent = pendingIntent;
-        notification.contentView.setTextViewText(ResourcesUnusualUtil.getId("tv_loging"), "          点击安装");
+        notification.contentView.setTextViewText(ResourcesUtils.getId("tv_loging"), "          点击安装");
         notification.flags = Notification.FLAG_AUTO_CANCEL;
         mNotificationManager.notify(1, notification);
     }

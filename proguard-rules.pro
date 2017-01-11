@@ -73,6 +73,7 @@
   public static final android.os.Parcelable$Creator *;
 }
 
+#自定义的混淆参数
 -keep class com.joey.net.protocol.**{*;}
 
 -keep class com.joey.utils.NetWorkUtil{
@@ -86,45 +87,35 @@
   public protected <methods>;
 
 }
--keep class com.joey.hybrid.HybridWebClient{
-    public static java.lang.String *(java.lang.String);
-    public <methods>;
-}
+
 -keep class * implements com.joey.update.UpdateProgressListener {
-#    void onProgress(long, long);
-#    void onStartProgress();
-#    void onFinish();
-#    void onError();
     public protected <methods>;
 }
--keep class com.joey.update.CheckBean{*;}
+-keep class * implements com.joey.update.UpdateCheckListener {
+    public protected <methods>;
+}
+
+-keep class * extends com.joey.update.UpdateProtocol {
+    public <methods>;
+}
+
 -keep class com.joey.update.UpdateManager{
     public <methods>;
-#     public <init>;
 }
-#-keepclasseswithmembers class com.joey.update.UpdateManager {
-#    public <init>(android.content.Context, com.joey.update.UpdateProtocol);
-#}
+-keep class com.joey.update.CheckBean{*;}
 
 -keep class com.joey.update.UpdateProtocol{*;}
 -keep class com.joey.update.UpdateConsts{*;}
 -keep class com.joey.update.NotificationUtils{*;}
 -keep interface com.joey.update.UpdateCheckListener{*;}
 -keep interface com.joey.update.UpdateProgressListener{*;}
--keep interface com.joey.hybrid.OnWebTitleListener{*;}
--keep class * implements com.joey.update.UpdateCheckListener {
-#    void onProgress(long, long);
-#    void onStartProgress();
-#    void onFinish();
-#    void onError();
-    public protected <methods>;
-}
 
--keep class * extends com.joey.update.UpdateProtocol {
-    public void download(java.lang.String, com.joey.update.UpdateProgressListener, java.lang.String);
-    public void checkVersionCode(com.joey.utils.NetWorkUtil,int, com.joey.update.UpdateCheckListener);
-    public void release();
+-keep class com.joey.hybrid.HybridWebClient{
+    public static java.lang.String *(java.lang.String);
+    public <methods>;
 }
+-keep interface com.joey.hybrid.OnWebTitleListener{*;}
+
 
 #-keep class com.joey.update.**{*;}
 
